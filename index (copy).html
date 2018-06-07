@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<title>Multiupload example</title>
+	</head>
+	<body>
+		<h1>Test multiupload</h1>
+		<form id="myform" method="post" enctype="multipart/form-data">
+			<div id="files">
+				<label>Choose photos to upload</label><br>
+				<input type="file" accept=".jpg, .jpeg, .png"><br>
+			</div>
+			<div>
+				<!--<button>Submit</button>-->
+			</div>
+		</form>
+		<button onClick="sendDataJSON()">MySubmit</button>
+		<button onClick="addAnother()">Add another picture</button>
+		<script>
+			function addAnother(){
+				//myvar = "<label>Choose photos to upload</label><br><input type='file' accept='.jpg, .jpeg, .png'><br>";
+				//document.getElementById("files").innerHTML = document.getElementById("files").innerHTML+myvar; 
+				myButton          = document.createElement("INPUT");
+				myButton.type     = "file";
+				myButton.accept   = ".jpg, .jpeg, .png";
+				myButtonLbl       = document.createTextNode("Input");
+				document.getElementById("files").appendChild(myButton);
+			}
+			function sendDataJSON(){
+				var myJSON = JSON.Stringify(getElementById("myform")
+			}
+		</script>
+	</body>
+</html>

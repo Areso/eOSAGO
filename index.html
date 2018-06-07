@@ -1,0 +1,65 @@
+<html>
+	<head>
+		<title>Multiupload example</title>
+	</head>
+	<body>
+		<h1>Test multiupload</h1>
+		<form id="myform" method="post" enctype="multipart/form-data">
+			<div id="files">
+				<label>Write license ID of driver</label><br>
+				<input><br>
+			</div>
+			<div>
+				<!--<button>Submit</button>-->
+			</div>
+		</form>
+		<button onClick="sendDataJSON()">MySubmit</button>
+		<button onClick="addAnother()">Add another driver</button>
+		<div id="insurancePrice"></div>
+		<script>
+			function addAnother(){
+				mytag = document.createElement("br");
+				myButton          = document.createElement("INPUT");
+				//myButtonLbl       = document.createTextNode("Input");
+				document.getElementById("files").appendChild(myButton);
+				document.getElementById("files").appendChild(mytag);
+			}
+			function sendDataJSON() {
+				var xhttp;
+				xhttp= new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						resp = xhttp.responseText;
+						console.log(resp);
+						responseArray = JSON.parse(resp);
+						console.log(responseArray);
+						document.getElementById("insurancePrice").innerHTML = "";
+						for (var myresponse in responseArray) {
+							console.log(responseArray[myresponse]);
+							
+document.getElementById("insurancePrice").innerHTML = document.getElementById("insurancePrice").innerHTML +"insurance price is "+responseArray[myresponse]+"<br>";
+
+						}
+				
+												
+					}
+				}
+				xhttp.open("POST", "calc.php", true);
+				xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				myobj = "123";
+			
+				var object = [];
+				formData = document.getElementById("myform");
+				var list = document.getElementById("myform");
+				for (var i = 0; i < list.length; i++){
+					//console.log(list[i].value);
+					object.push(list[i].value);
+				}
+			    var json = JSON.stringify(object);
+				sendingData = "json="+json;
+				//console.log(sendingData);
+				xhttp.send(sendingData);
+			}
+		</script>
+	</body>
+</html>
